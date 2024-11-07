@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanna Hang Out?</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin-top: 50px;
+      color: #333;
+    }
+
+    .button-container {
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-no {
+      background-color: #f44336;
+    }
+
+    .gif-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .celebration-gif {
+      width: 300px;
+      height: auto;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hey babe, do you wanna hang out with me? 💖</h1>
+
+  <div class="button-container">
+    <button class="btn btn-yes" onclick="playYesSound()">Yes!</button>
+    <button class="btn btn-no" id="noButton" onclick="playNoSound()">No...</button>
+  </div>
+
+  <div class="gif-container" id="gifContainer">
+    <h2>Yay! 🎉</h2>
+    <img class="celebration-gif" src="https://media.giphy.com/media/3o7aD4l7P4q7n3oFHa/giphy.gif" alt="Celebration GIF">
+  </div>
+
+  <!-- Sound Elements -->
+  <audio id="yesAudio" src="https://www.soundjay.com/button/sounds/button-3.mp3"></audio>
+  <audio id="noAudio" src="https://www.soundjay.com/button/sounds/button-10.mp3"></audio>
+
+  <script>
+    let noButton = document.getElementById('noButton');
+    let buttonSize = 100;
+
+    // Function to shrink the "No" button and play sound
+    function playNoSound() {
+      // Play the "No" sound effect
+      document.getElementById('noAudio').play();
+      
+      // Shrink the button
+      if (buttonSize > 10) {
+        buttonSize -= 10; // Shrink the button size
+        noButton.style.transform = `scale(${buttonSize / 100})`;
+      } else {
+        noButton.style.display = 'none'; // Disappear completely when too small
+      }
+    }
+
+    // Function to show the celebration GIF and play sound
+    function playYesSound() {
+      // Play the "Yes" sound effect
+      document.getElementById('yesAudio').play();
+
+      // Show the GIF
+      document.getElementById('gifContainer').style.display = 'block';
+      noButton.style.display = 'none'; // Hide the "No" button when "Yes" is clicked
+    }
+  </script>
+
+</body>
+</html>
